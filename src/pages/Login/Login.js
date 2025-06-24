@@ -13,7 +13,8 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const handleLogin = () => {
-        axios.post("https://babyland.free.nf/Login.php", {
+        axios.post("https://babyland.byethost3.com/api/Login.php", {
+
 
             email: email,
             password: password
@@ -24,12 +25,13 @@ export default function Login() {
                     // تسجيل الدخول ناجح
                     localStorage.setItem("userName", res.data.name);
                     setMessage(res.data.message);
-                    // إعادة التوجيه أو التحديث
-                    window.location.reload(); // ← تحديث الصفحة لتحديث الـ navbar
+
+                    window.location.reload();
                     alert("✅ " + res.data.message);
                 } else {
                     // كلمة المرور أو الإيميل خطأ
                     alert("❌ " + res.data.message);
+                    console.log(res.data.message)
                 }
             })
             .catch(error => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button, Card, Alert, FloatingLabel } from 'react-bootstrap';
 import { FaUser, FaLock, FaSignInAlt } from 'react-icons/fa';
-import './Login.css'; // سننشئ هذا الملف لاحقًا
+import './Login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -34,10 +34,10 @@ const Login = () => {
     if (validateForm()) {
       setIsLoading(true);
       try {
-        // محاكاة طلب تسجيل دخول (استبدل هذا بطلب API حقيقي)
+
         await new Promise(resolve => setTimeout(resolve, 1500));
         console.log('تم التسجيل بنجاح:', formData);
-        navigate('/dashboard'); // توجيه المستخدم بعد التسجيل
+        navigate('/home');
       } catch (error) {
         console.error('فشل تسجيل الدخول:', error);
         setErrors({ submit: 'اسم المستخدم أو كلمة المرور غير صحيحة' });
@@ -58,7 +58,7 @@ const Login = () => {
         </Card.Header>
         <Card.Body>
           {errors.submit && <Alert variant="danger">{errors.submit}</Alert>}
-          
+
           <Form onSubmit={handleSubmit}>
             <FloatingLabel controlId="username" label="اسم المستخدم" className="mb-3">
               <Form.Control
@@ -90,9 +90,9 @@ const Login = () => {
               <FaLock className="input-icon" />
             </FloatingLabel>
 
-            <Button 
-              variant="primary" 
-              type="submit" 
+            <Button
+              variant="primary"
+              type="submit"
               className="w-100 login-btn"
               disabled={isLoading}
             >
